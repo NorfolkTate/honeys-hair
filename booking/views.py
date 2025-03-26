@@ -9,8 +9,9 @@ def book_appointment(request):
         form = BookingForm(request.POST) # code helpfully provided by Stackoverflow and referenced in Readme
         if form.is_valid():
             form.save()
-            return redirect()
+            return redirect('booking_success')
     else:
         form = BookingForm()
     
-    return render(request)
+    return render(request, 'booking/book.html', {'form': form}) # code helpfully explained by real python and referenced in Readme
+
