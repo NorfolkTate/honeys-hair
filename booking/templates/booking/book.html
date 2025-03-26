@@ -1,0 +1,11 @@
+{% extends "base.html" %}  <!--Code helpfully provided by sourcecodester and referenced in Readme-->
+{% load static %}
+
+{% block content %}
+  <h2>Book Your Appointment</h2>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
