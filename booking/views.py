@@ -22,5 +22,9 @@ def book_appointment(request):
 
 def services(request):
     all_services = Service.objects.all()
-    
+
     return render(request, 'booking/services.html', {'services': all_services})
+
+def home(request):
+    
+    return render(request, 'booking/home.html')
