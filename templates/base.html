@@ -5,6 +5,19 @@
     <title>Honeys Hair</title>
 </head>
 <body>
+    <nav>
+        <h1>Honeys Hair</h1>
+        <ul>
+            {% if user.is_authenticated %} <!--code provided by stack overflow and referenced in Readme-->
+                <li>Welcome, {{ user.username }}!</li>
+                <li><a href="{% url 'book_appointment' %}">Book Now</a></li>
+                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'account_login' %}">Login</a></li>
+                <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     {% block content %}
     {% endblock %}
 </body>
