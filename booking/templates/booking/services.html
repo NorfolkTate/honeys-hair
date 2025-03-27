@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">Our Services</h2>
+    <div class="row">
+      {% for service in services %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ service.name }}</h5>
+              <p class="card-text">{{ service.description }}</p>
+              <p class="card-text"><strong>£{{ service.price }}</strong></p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No services are available right now.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
