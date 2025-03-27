@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect  # code helpfully inspired by stackoverflow and referenced in Readme
 from django.contrib.auth.decorators import login_required
-
-
-
 from .forms import BookingForm
+from .models import Service
+
 
 @login_required
 def book_appointment(request): 
@@ -21,3 +20,7 @@ def book_appointment(request):
 
     return render(request, 'booking/book.html', {'form': form})
 
+def services(request):
+    all_services = Service.objects.all()
+    
+    return render(request, 'booking/services.html', {'services': all_services})
