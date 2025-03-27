@@ -1,7 +1,11 @@
 from django.shortcuts import render, redirect  # code helpfully inspired by stackoverflow and referenced in Readme
+from django.contrib.auth.decorators import login_required
+
+
 
 from .forms import BookingForm
 
+@login_required
 def book_appointment(request): 
     if request.method == 'POST':
         form = BookingForm(request.POST)  # code helpfully provided by Stackoverflow and referenced in Readme
