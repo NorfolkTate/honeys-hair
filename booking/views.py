@@ -9,13 +9,13 @@ from django.contrib.auth import get_user_model
 
 
 @login_required
-
 @user_passes_test(lambda u: u.is_staff)
 def all_bookings(request):
  # COME BACK TO THIS BIT
     bookings = Booking.objects.select_related("service").order_by("date", "time")
     return render(request, "booking/all_bookings.html", {"bookings": bookings})
 
+@login_required
 def update_booking_status(request, pk):
     booking = get_object_or_404(Booking, pk=pk)
     if request.method == "POST":
@@ -51,6 +51,7 @@ def update_booking_status(request, pk):
             messages.error(request, "Invalid")
     return redirect("all_bookings")
 
+@login_required
 def my_bookings(request):
     # logged in user
     bookings = Booking.objects.filter(name=request.user.username).order_by("date", "time")
@@ -58,6 +59,7 @@ def my_bookings(request):
         "bookings": bookings,
     })
 
+@login_required
 def book_appointment(request): 
     if request.method == 'POST':
         form = BookingForm(request.POST)  # code helpfully provided by Stackoverflow and referenced in Readme
@@ -71,6 +73,7 @@ def book_appointment(request):
 
     return render(request, 'booking/book.html', {'form': form})
 
+@login_required
 def edit_booking(request, pk):
 # COME BACK TO THIS BIT
     booking = get_object_or_404(Booking, pk=pk, name=request.user.username)
@@ -88,6 +91,7 @@ def edit_booking(request, pk):
         #same form
     return render(request, "booking/book.html", {"form": form, "editing": True})
 
+@login_required
 def cancel_booking(request, pk):
 # COME BACK TO THIS BIT
     booking = get_object_or_404(Booking, pk=pk, name=request.user.username) #Code provided by stackoverflow and ref. in readme
