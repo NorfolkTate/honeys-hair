@@ -25,6 +25,23 @@ def book_appointment(request):
 
     return render(request, 'booking/book.html', {'form': form})
 
+def edit_booking(request, pk):
+# COME BACK TO THIS BIT
+    booking = get_object_or_404(Booking, pk=pk, name=request.user.username)
+
+    if request.method == "POST":
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.name = request.user.username  # user
+            obj.save()
+            messages.success(request, "Booking updated")
+            return redirect("my_bookings")
+    else:
+        form = BookingForm(instance=booking)
+        #same form
+    return render(request, "booking/book.html", {"form": form, "editing": True})
+
 def cancel_booking(request, pk):
 # COME BACK TO THIS BIT
     booking = get_object_or_404(Booking, pk=pk, name=request.user.username) #Code provided by stackoverflow and ref. in readme
