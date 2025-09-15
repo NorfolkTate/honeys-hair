@@ -11,10 +11,18 @@ class Service(models.Model):
         return self.name
 
 class Booking(models.Model):
+    STATUS_CHOICES = [
+        ("PENDING", "Pending"),
+        ("CONFIRMED", "Confirmed"),
+        ("COMPLETED", "Completed"),
+        ("CANCELLED", "Cancelled"),
+    ]
+
     name = models.CharField(max_length=100)
     service = models.ForeignKey(Service, on_delete=models.CASCADE) #code helpfully inspired by StackOverflow and referenced in Readme
     date = models.DateField()
     time = models.TimeField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="PENDING")
 
     def __str__(self):
         return f"{self.name} - {self.service} on {self.date} at {self.time}"
