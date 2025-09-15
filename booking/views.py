@@ -1,5 +1,6 @@
-from django.shortcuts import render, redirect  # code helpfully inspired by stackoverflow and referenced in Readme
+from django.shortcuts import render, redirect, get_object_or_404  # code helpfully inspired by stackoverflow and referenced in Readme
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import BookingForm
 from .models import Service, Booking
 
@@ -23,6 +24,18 @@ def book_appointment(request):
         form = BookingForm()
 
     return render(request, 'booking/book.html', {'form': form})
+
+def cancel_booking(request, pk):
+# COME BACK TO THIS BIT
+    booking = get_object_or_404(Booking, pk=pk, name=request.user.username) #Code provided by stackoverflow and ref. in readme
+    # code provided by geeks for geeks and ref. in readme 
+
+    if request.method == "POST":
+        booking.delete()
+        messages.info(request, "Your booking has been cancelled")
+        return redirect("my_bookings")
+
+    return render(request, "booking/confirm_cancel.html", {"booking": booking})
 
 def services(request):
     all_services = Service.objects.all()
