@@ -15,11 +15,9 @@ def book_appointment(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)  # code helpfully provided by Stackoverflow and referenced in Readme
         if form.is_valid():
-            try:
-                form.save()
-            except Exception as e:  #POTENTIAL FIX FFFFFFFFFFF
-                print("FORM SAVE ERROR:", e)
-                raise
+            booking = form.save(commit=False)   # don’t save yet
+            booking.name = request.user.username  # link booking to logged in user
+            booking.save()
             return render(request, 'booking/success.html')
     else:
         form = BookingForm()
