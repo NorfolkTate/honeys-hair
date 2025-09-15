@@ -16,6 +16,9 @@
           <td>{{ b.date }}</td>
           <td>{{ b.time }}</td>
           <td>{{ b.service.name }}</td>
+        <td class="text-nowrap">
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'cancel_booking' b.pk %}">Cancel</a>
+        </td>
         </tr>
       {% empty %}
         <tr><td colspan="3">You don’t have any appointments yet</td></tr>
