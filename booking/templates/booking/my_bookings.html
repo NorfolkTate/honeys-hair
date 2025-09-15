@@ -8,6 +8,8 @@
         <th>Date</th>
         <th>Time</th>
         <th>Service</th> <!--code provided by bootstrap documentation-->
+        <th>Status</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -16,13 +18,14 @@
           <td>{{ b.date }}</td>
           <td>{{ b.time }}</td>
           <td>{{ b.service.name }}</td>
-        <td class="text-nowrap">
+          <td>{{ b.get_status_display }}</td>
+          <td class="text-nowrap">
             <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_booking' b.pk %}">Edit</a>
             <a class="btn btn-sm btn-outline-danger" href="{% url 'cancel_booking' b.pk %}">Cancel</a>
-        </td>
+          </td>
         </tr>
       {% empty %}
-        <tr><td colspan="3">You don’t have any appointments yet</td></tr>
+        <tr><td colspan="5">You don’t have any appointments yet</td></tr>
       {% endfor %}
     </tbody>
   </table>
