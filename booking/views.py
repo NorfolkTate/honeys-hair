@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect  # code helpfully inspired by stackoverflow and referenced in Readme
 from django.contrib.auth.decorators import login_required
 from .forms import BookingForm
-from .models import Service
+from .models import Service, Booking
 
 
 @login_required
+
+def my_bookings(request):
+    # logged in user
+    qs = Booking.objects.filter(name=request.user.username).order_by("date", "time")
+    return render(request, "booking/my_bookings.html", {"bookings": qs})
+
 def book_appointment(request): 
     if request.method == 'POST':
         form = BookingForm(request.POST)  # code helpfully provided by Stackoverflow and referenced in Readme
