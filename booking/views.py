@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from .forms import BookingForm
 from .models import Service, Booking
+from django.core.mail import send_mail
+from django.contrib.auth import get_user_model
+
 
 
 @login_required
@@ -12,6 +15,41 @@ def all_bookings(request):
  # COME BACK TO THIS BIT
     bookings = Booking.objects.select_related("service").order_by("date", "time")
     return render(request, "booking/all_bookings.html", {"bookings": bookings})
+
+def update_booking_status(request, pk):
+    booking = get_object_or_404(Booking, pk=pk)
+    if request.method == "POST":
+        new_status = request.POST.get("status")
+        valid = [s[0] for s in Booking.STATUS_CHOICES]
+        if new_status in valid:
+            if booking.status != new_status:
+                booking.status = new_status
+                booking.save(update_fields=["status"])
+                messages.success(request, "Booking updated")
+
+                try:
+                    User = get_user_model()
+                    user = User.objects.get(username=booking.name)
+                    if user.email:
+                        send_mail(
+                            subject="Your Honey's Hair booking status was updated",
+                            message=(
+                                f"Hi {user.username},\n\n"
+                                f"Your booking for {booking.service.name} on {booking.date} at {booking.time} "
+                                f"is now '{booking.get_status_display()}'.\n\n"
+                                "Thanks,\nHoney's Hair"
+                            ),
+                            from_email=None,
+                            recipient_list=[user.email],
+                            fail_silently=True,
+                        )
+                except User.DoesNotExist:
+                    pass
+            else:
+                messages.info(request, "Status is unchanged")
+        else:
+            messages.error(request, "Invalid")
+    return redirect("all_bookings")
 
 def my_bookings(request):
     # logged in user
