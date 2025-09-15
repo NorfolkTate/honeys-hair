@@ -17,6 +17,7 @@
           <td>{{ b.time }}</td>
           <td>{{ b.service.name }}</td>
         <td class="text-nowrap">
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'edit_booking' b.pk %}">Edit</a>
             <a class="btn btn-sm btn-outline-danger" href="{% url 'cancel_booking' b.pk %}">Cancel</a>
         </td>
         </tr>
