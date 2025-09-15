@@ -52,6 +52,7 @@ def update_booking_status(request, pk):
     return redirect("all_bookings")
 
 def my_bookings(request):
+    # logged in user
     bookings = Booking.objects.filter(name=request.user.username).order_by("date", "time")
     return render(request, "booking/my_bookings.html", {
         "bookings": bookings,
