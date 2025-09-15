@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404  # code helpfully inspired by stackoverflow and referenced in Readme
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from .forms import BookingForm
 from .models import Service, Booking
 
 
 @login_required
+
+@user_passes_test(lambda u: u.is_staff)
+def all_bookings(request):
+ # COME BACK TO THIS BIT
+    bookings = Booking.objects.select_related("service").order_by("date", "time")
+    return render(request, "booking/all_bookings.html", {"bookings": bookings})
 
 def my_bookings(request):
     # logged in user
@@ -62,3 +68,5 @@ def services(request):
 def home(request):
     
     return render(request, 'booking/home.html')
+
+
