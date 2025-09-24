@@ -11,6 +11,12 @@ class Service(models.Model):
         return self.name
 
 class Booking(models.Model):
+
+    STATUS_PENDING   = "PENDING"
+    STATUS_CONFIRMED = "CONFIRMED"
+    STATUS_COMPLETED = "COMPLETED"
+    STATUS_CANCELLED = "CANCELLED"
+
     STATUS_CHOICES = [
         ("PENDING", "Pending"),
         ("CONFIRMED", "Confirmed"),
@@ -23,6 +29,12 @@ class Booking(models.Model):
     date = models.DateField()
     time = models.TimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="PENDING")
+
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default=STATUS_PENDING
+    )
 
     def __str__(self):
         return f"{self.name} - {self.service} on {self.date} at {self.time}"

@@ -13,7 +13,9 @@ from django.contrib.auth import get_user_model
 def all_bookings(request):
  # COME BACK TO THIS BIT
     bookings = Booking.objects.select_related("service").order_by("date", "time")
-    return render(request, "booking/all_bookings.html", {"bookings": bookings})
+    return render(request, "booking/all_bookings.html", {
+        "bookings": bookings,
+        "status_choices": Booking.STATUS_CHOICES,})
 
 @login_required
 def update_booking_status(request, pk):
