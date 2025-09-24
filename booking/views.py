@@ -11,7 +11,6 @@ from django.contrib.auth import get_user_model
 @login_required
 @user_passes_test(lambda u: u.is_staff)
 def all_bookings(request):
- # COME BACK TO THIS BIT
     bookings = Booking.objects.select_related("service").order_by("date", "time")
     return render(request, "booking/all_bookings.html", {
         "bookings": bookings,
