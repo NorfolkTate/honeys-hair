@@ -52,7 +52,7 @@ AUTHENTICATION_BACKENDS = [
 
 # allauth updates
 ACCOUNT_LOGIN_METHODS = {"username", "email"}
-ACCOUNT_SIGNUP_FIELDS = ["email", "username*", "password1*", "password2*"]
+ACCOUNT_SIGNUP_FIELDS = ["email", "username*", "password1*", "password2*"] #code inspired by w3 schools and ref. in readme
 
 
 LOGIN_URL = "account_login"
