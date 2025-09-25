@@ -1,2 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Merienda+One&family=Open+Sans:wght@300;400;600&display=swap');
 
+/* ------------------------------------------------------
+   colour ref.:
+   espresso  #4a3428, cocoa  #6b4f3b, caramel #b58863,
+   sand      #e8d8c9, almond #f6eee6, cream   #fffaf6,
+   danger    #b6543a, success #3e6b4f, muted  #8a7b70
+------------------------------------------------------ */
+
+html, body {
+  overflow-x: hidden;
+  background-color: #f6eee6;
+  color: #2a241f;
+  margin: 0;
+  font-family: 'Open Sans', Arial, sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Merienda One', 'Brush Script MT', cursive;
+  margin: 0 0 .5rem 0;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem;  }
+h3 { font-size: 1.5rem; }
