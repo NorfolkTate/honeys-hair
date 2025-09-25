@@ -69,21 +69,31 @@ h3 { font-size: 1.5rem; }
   border-color: #b6543a;
 }
 .btn-secondary {
-  background-color: #6b4f3b;   /* cocoa */
+  background-color: #6b4f3b;
   border-color: #6b4f3b;
   color: #fff;
 }
 .btn-secondary:hover {
-  background-color: #4a3428;   /* espresso */
+  background-color: #4a3428;
   border-color: #4a3428;
 }
 
 .btn-dark {
-  background-color: #6b4f3b;   /* cocoa */
+  background-color: #6b4f3b;
   border-color: #6b4f3b;
   color: #fff;
 }
 .btn-dark:hover {
-  background-color: #4a3428;   /* espresso */
+  background-color: #4a3428;
   border-color: #4a3428;
+}
+
+/* ---
+   services cards
+--- */
+.card {
+  border: 0;
+  border-radius: 1rem;
+  background-color: #fffaf6;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
 }
