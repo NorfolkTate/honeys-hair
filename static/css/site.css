@@ -16,6 +16,7 @@ html, body {
 }
 
 h1, h2, h3 {
+  color:#4a3428;  
   font-family: 'Merienda One', 'Brush Script MT', cursive;
   margin: 0 0 .5rem 0;
 }
@@ -66,4 +67,23 @@ h3 { font-size: 1.5rem; }
 .btn-danger {
   background-color: #b6543a;
   border-color: #b6543a;
+}
+.btn-secondary {
+  background-color: #6b4f3b;   /* cocoa */
+  border-color: #6b4f3b;
+  color: #fff;
+}
+.btn-secondary:hover {
+  background-color: #4a3428;   /* espresso */
+  border-color: #4a3428;
+}
+
+.btn-dark {
+  background-color: #6b4f3b;   /* cocoa */
+  border-color: #6b4f3b;
+  color: #fff;
+}
+.btn-dark:hover {
+  background-color: #4a3428;   /* espresso */
+  border-color: #4a3428;
 }
