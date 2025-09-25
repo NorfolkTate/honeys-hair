@@ -23,3 +23,22 @@ h1, h2, h3 {
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem;  }
 h3 { font-size: 1.5rem; }
+
+/* -----------------
+   Navbar
+---------------------------- */
+.navbar {
+  background-color: #fffaf6;
+  box-shadow: 0 2px 12px rgba(0,0,0,.05);
+}
+.navbar .navbar-brand {
+  color: #4a3428 !important;
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.navbar .nav-link {
+  color: #4a3428 !important;
+  opacity: .9;
+}
+.navbar .nav-link:hover { color: #6b4f3b !important; opacity: 1; }
+.navbar-light .navbar-toggler { border-color: rgba(0,0,0,.15); }
