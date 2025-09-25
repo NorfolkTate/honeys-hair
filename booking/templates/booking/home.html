@@ -2,6 +2,17 @@
 {% load static %}
 
 {% block content %}
+<div class="container">
+  <div class="hero">
+    <h1 class="mb-2">Luxury hair, calm vibes</h1>
+    <p class="lead mb-3">Cuts, colour and styling in a relaxed boutique setting.</p>
+    {% if user.is_authenticated %}
+      <a href="{% url 'book_appointment' %}" class="btn">Book now</a>
+    {% else %}
+      <a href="{% url 'account_login' %}" class="btn">Log in to book</a>
+    {% endif %}
+  </div>
+</div>
   <div class="container text-center mt-5">
     <h1 class="display-4">Welcome to Honey's Hair</h1>
     <p class="lead">Your luxury hair experience starts here</p>
