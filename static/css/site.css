@@ -89,11 +89,44 @@ h3 { font-size: 1.5rem; }
 }
 
 /* ---
-   services cards
+   services
 --- */
 .card {
   border: 0;
   border-radius: 1rem;
   background-color: #fffaf6;
   box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+
+/* ---
+   tables
+   --- */
+.table-responsive { overflow-x: auto; }
+.table thead th {
+  background-color: #e8d8c9;
+  border-color: #e8d8c9;
+  font-weight: 600;
+}
+.table td, .table th { vertical-align: middle; }
+.table-striped > tbody > tr:nth-of-type(odd) {
+  --bs-table-accent-bg: #f0e6dc;
+}
+
+/* ---
+   forms
+---- */
+.form-control, .form-select {
+  border-radius: .5rem;
+  border-color: #e0d3c7;
+  background-color: #fffaf6;
+}
+.form-control:focus, .form-select:focus {
+  border-color: #b58863;
+  box-shadow: 0 0 0 .2rem rgba(181,136,99,.25);
+}
+
+/* form container for large screens */
+.form-narrow {
+  max-width: 640px;
+  margin: 2rem auto;
 }
